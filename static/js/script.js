@@ -17,6 +17,12 @@ $(document).ready(function() {
     $(this).parent().children('.component-container').children('.component').children('.recipe').toggleClass('active');
     $(this).toggleClass('recipe-active');
   });
-  $('.slider').slick();
+
+
+  $('.slider').slick({
+    autoplay: false,
+    prevArrow: $('.arrow-left'),
+    nextArrow: $('.arrow-right')
+  });
 });
 

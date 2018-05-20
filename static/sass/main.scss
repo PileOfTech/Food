@@ -390,6 +390,60 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   @include m-desctop{
     top: calc(180%);
   }
+  .arrows{
+    opacity: 0.75;
+    right: 0;
+    top: 600px;
+    z-index: 900;
+    height: 120px;
+    width: 240px;
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: no-wrap;
+    @include m-desctop{
+      height: 60px;
+      width: 120px;
+      top: 450px;
+    }
+    .arrow{
+      cursor: pointer;
+      border-right: 3px solid black;
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+      box-sizing: border-box;
+      height: 120px;
+      width: 120px;
+      @include m-desctop{
+        height: 60px;
+        width: 60px;
+      }
+      .clip{
+        box-sizing: content-box;
+        background-size: cover;
+        width: 100px;
+        height: 60px;
+        margin-left: 7px;
+        margin-top: 30px;
+        @include m-desctop{
+          width: 40px;
+          height: 25px;
+          margin-top: 15px;
+        }
+      }
+    }
+    .arrow-left{
+      border-left: 3px solid black;
+      .clip{
+        background-image: url('../images/arrow-left.png');  
+      }
+    }
+    .arrow-right{
+      .clip{
+        background-image: url('../images/arrow-right.png');  
+      }
+    }
+  }
   .recipe-but{
     z-index: 900;
     clip-path: none;
@@ -403,6 +457,19 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     transition: 0.8s;
     cursor: pointer;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    @include m-desctop{
+      height: 60px;
+      width: 250px;
+      font-size: 40px;
+      padding-top: 5px;
+      top: 565px;
+      left: calc((100% - 250px)/2;
+      &:hover{
+        .hidden{
+          transform: translate3d(0, -56px, 0) !important;
+        }
+      }
+    }
     &:hover{
       .hidden{
         transform: translate3d(0, -140px, 0);
@@ -415,7 +482,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       font-size: 60px;
       padding-top: 35px; 
       width: 100% ;
-      height: 100%;     
+      height: 100%; 
+      @include m-desctop{
+        padding-top: 5px;
+        font-size: 35px; 
+      }    
     }
     .visible{
     }
@@ -423,20 +494,15 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       transition: all 0.2s ease-in-out;
       transform: translate3d(0, 0px, 0);
     }
-    @include m-desctop{
-      height: 60px;
-      width: 250px;
-      font-size: 40px;
-      padding-top: 5px;
-      top: calc(100% - 30px);
-      left: calc((850px - 250px)/2;
-    }
   }  
   .sl-01{
     .recipe-but{    
       .visible, .hidden{      
         border-color: $green-border;
         border: 3px solid $green-border;
+        @include m-desctop{
+          border: 2px solid $green-border;
+        }
       }
       .visible{
         color: $green-border;
@@ -475,6 +541,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       .visible, .hidden{      
         border-color: black;
         border: 3px solid black;
+        @include m-desctop{
+          border: 2px solid black;
+        }        
       }
       .visible{
         color: black;
@@ -502,6 +571,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       .visible, .hidden{      
         border-color: $red-border;
         border: 3px solid $red-border;
+        @include m-desctop{
+          border: 2px solid $red-border;
+        }        
       }
       .visible{
         color: $red-border;
@@ -605,11 +677,16 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     position: absolute;       
     top: 120px;
     left: 340px;
+    @include m-desctop{
+      width: 850px;
+      left: 260px;
+      height: 530px;
+    }    
   }
   .component{
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     $comp-h: 680px;
-    z-index: 400;
+    z-index: 800;
     box-sizing: border-box;
     z-index: 180;
     position: absolute;
@@ -619,8 +696,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     border-left: 3px solid $green-border;
     @include m-desctop{
       width: 850px;
-      left: 260px;
       height: 480px;
+      border-bottom: 2px solid $green-border;
+      border-left: 2px solid $green-border;      
     }
     .empty-recipe{
       position: absolute;
@@ -628,7 +706,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       width: 100%;      
     }
     .active{
-      transform: translate3d(0, 0px, 0) !important; 
+      transform: translate3d(0, 2px, 0) !important; 
     }
     .recipe{
       z-index: 500;
@@ -650,6 +728,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         max-width: $ing-h;
         min-width: $ing-h;
         width: $ing-h;
+        @include m-desctop{
+          $m-ing-h: 350px;
+          max-width: $m-ing-h;
+          min-width: $m-ing-h;
+          width: $m-ing-h;          
+        }
         .ravioli{
           height: 100%;
           width: 200px;
@@ -665,6 +749,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           position: absolute;
           background-size: cover;
           background-image: url('../images/ieroglif.png');
+          @include m-desctop{
+            width: 100px;
+          }
         }
         .ingr-text{
           $translate-x: $ing-h - $comp-h/2 - 55px;
@@ -675,12 +762,18 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           text-overflow: clip;
           color: $grey-text;
           Font-Size: 135px;
-          // background-color: grey;
           font-family: 'stolzl-med';
           letter-spacing: 10px;
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
           transform: rotate(-90deg) translate3d(-($translate-y), $translate-x, 0) ;
+          @include m-desctop{
+            width: 475px;
+            transform: rotate(-90deg) translate3d(-155px, 75px, 0) ;
+          }
           .text{
+            height: 120px;
+            font-size: 115px;
+            width:  470px;
             transform: translateX(-50px); 
           }
         }
@@ -690,18 +783,29 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           width: 390px;
           left: calc((#{$ing-h} - 380px)/2);
           margin-top: 50px;
+          @include m-desctop{
+            width: 300px;
+          }          
           .list-el{
             position: relative;
             height: 70px;
             width: 100%;
-            // background-color: $grey-text;
             margin-top: 40px;
+            @include m-desctop{
+              height: 50px;
+              margin-top: 20px;
+            }                
             .icon{
               height: 60px;
               width: 60px;
               display: inline-block;
               background-size: cover;
               transform: translateY(-10px);
+              @include m-desctop{
+                width: 35px;
+                height: 35px;
+                transform: translateY(0px);
+              }                  
             }
             .text{
               display: inline-block;
@@ -709,13 +813,25 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
               width: 300px;
               margin-left: 22px;
               font-family: 'stolzl-med';
+              @include m-desctop{
+                width: 230px;
+                height: 45px;
+                margin-left: 12px;
+              }
               .title{
                 Font-Size: 40px;
+                @include m-desctop{
+                  font-size: 24px;
+                }
               }
               .gram{
                 color: #cecece;
                 font-size: 20px;
                 line-height: 27px;
+                @include m-desctop{
+                  font-size: 16px;
+                  line-height: 20px;
+                }
               }
             }
             
@@ -737,12 +853,21 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
             width: 630px;
             height: auto;
             margin-top: 75px;
+            @include m-desctop{
+              margin-top:  105px;
+              width: 380px;
+            }
             .list-el{
               color: white;
               font-size: 30px;
               font-family: 'stolzl-light';
               padding-top: 45px;
               line-height: 40px;
+              @include m-desctop{
+                font-size: 19px;
+                line-height: 24px;
+                padding-top: 17px;
+              }
               span{
                 font-family: 'stolzl-med';
               }
@@ -759,6 +884,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       border-top: 3px solid $green-border;
       @include m-desctop{
         width: 250px;
+        border-top: 2px solid $green-border;
       }
     }
     .hor-column{
@@ -770,6 +896,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       border-right: 3px solid $green-border;
       @include m-desctop{
         height: 210px;
+        border-right: 2px solid $green-border;
       }
     }
   }
@@ -779,6 +906,30 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     .hor-column{border-color: $green-border;}
   }
   .black-comp{
+    .line-v{
+      position: absolute;
+      width: 450px;
+      height: 3px;
+      background-color: black;
+      top: 265px;
+      right: 0;  
+      @include m-desctop{
+        width: 400px;
+        height: 2px;
+      } 
+    }
+    .line-h{
+      position: absolute;
+      height: 250px;
+      width: 3px;
+      background-color: black;
+      left: 450px;
+      @include m-desctop{
+        left: 250px;
+        width: 2px;
+        height: 200px;
+      }   
+    }
     .shadow{
       background-color: rgba(255,255,255,0.7) !important;
     }    
