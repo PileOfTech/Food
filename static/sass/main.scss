@@ -11,6 +11,7 @@ $red-border: #CE2E05;
 $red-light: rgba(141, 32, 7, 0.32);
 $grey: rgba(0, 0, 0, 0.5);
 $grey-line: rgba(148, 148, 148, 0.6);
+$grey-text: #E5E5E5;
 
 
 //deltas
@@ -66,6 +67,11 @@ $tab-vert-delta: 1.4;
 @font-face{
   font-family: 'stolzl-light';
   src: url('fonts/Stolzl-Light.ttf');
+}
+
+@font-face{
+  font-family: 'stolzl-med';
+  src: url('fonts/Stolzl-Medium.otf');
 }
 
 
@@ -384,7 +390,120 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   @include m-desctop{
     top: calc(180%);
   }
-
+  .recipe-but{
+    z-index: 900;
+    clip-path: none;
+    position: absolute;
+    box-sizing: border-box;
+    width: 400px;
+    height: 140px;
+    top: 723px;
+    left: calc((100% - 400px)/2;
+    text-align: center;
+    transition: 0.8s;
+    cursor: pointer;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    &:hover{
+      .hidden{
+        transform: translate3d(0, -140px, 0);
+      }
+    }
+    .visible, .hidden{
+      box-sizing: border-box;
+      text-align: center;
+      font-family: 'stolzl-light';
+      font-size: 60px;
+      padding-top: 35px; 
+      width: 100% ;
+      height: 100%;     
+    }
+    .visible{
+    }
+    .hidden{
+      transition: all 0.2s ease-in-out;
+      transform: translate3d(0, 0px, 0);
+    }
+    @include m-desctop{
+      height: 60px;
+      width: 250px;
+      font-size: 40px;
+      padding-top: 5px;
+      top: calc(100% - 30px);
+      left: calc((850px - 250px)/2;
+    }
+  }  
+  .sl-01{
+    .recipe-but{    
+      .visible, .hidden{      
+        border-color: $green-border;
+        border: 3px solid $green-border;
+      }
+      .visible{
+        color: $green-border;
+        background-color: white;
+      }
+      .hidden{
+        transition: all 0.2s ease-in-out;
+        color: white;
+        background-color: $green-border;
+        transform: translate3d(0, 0px, 0);
+      } 
+      &:hover{
+        .hidden{
+          transform: translate3d(0, -140px, 0);
+        }
+      }           
+    }    
+    .proces{
+      background-image: url('../images/recipe-01.png');
+    }
+  }
+  .sl-02{
+    .recipe-but{
+      .visible, .hidden{      
+        border-color: black;
+        border: 3px solid black;
+      }
+      .visible{
+        color: black;
+        background-color: white;
+      }
+      .hidden{
+        transition: all 0.2s ease-in-out;
+        color: white;
+        background-color: black;
+        transform: translate3d(0, 0px, 0);
+      } 
+      &:hover{
+        .hidden{
+          transform: translate3d(0, -140px, 0);
+        }
+      }      
+    }
+  }
+  .sl-03{
+    .recipe-but{
+      .visible, .hidden{      
+        border-color: $red-border;
+        border: 3px solid $red-border;
+      }
+      .visible{
+        color: $red-border;
+        background-color: white;
+      }
+      .hidden{
+        transition: all 0.2s ease-in-out;
+        color: white;
+        background-color: $red-border;
+        transform: translate3d(0, 0px, 0);
+      } 
+      &:hover{
+        .hidden{
+          transform: translate3d(0, -140px, 0);
+        }
+      }      
+    }
+  }
   .slider{
     $content-h: 100%;
     $m-content-h: 100%;
@@ -436,6 +555,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   .background{
     $content-h: 600px;
     $m-content-h: 450px;
+    z-index: 100;
     height: $content-h;
     width: 100%;
     position: relative;
@@ -455,7 +575,22 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       }   
     }
   }
+  .recipe-active{
+    .hidden{
+      transform: translate3d(0, -140px, 0) !important;
+    }
+  }  
+  .component-container{
+    height: 780px;
+    width: 1190px; 
+    position: absolute;       
+    top: 120px;
+    left: 340px;
+  }
   .component{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    $comp-h: 680px;
+    z-index: 400;
     box-sizing: border-box;
     z-index: 180;
     position: absolute;
@@ -463,35 +598,121 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     width: 1190px;
     border-bottom: 3px solid $green-border;
     border-left: 3px solid $green-border;
-    top: 120px;
-    left: 340px;
     @include m-desctop{
       width: 850px;
       left: 260px;
       height: 480px;
     }
-    .recipe{
+    .empty-recipe{
       position: absolute;
-      box-sizing: border-box;
+      height: 100%;
+      width: 100%;      
+    }
+    .active{
+      transform: translate3d(0, 0px, 0) !important; 
+    }
+    .recipe{
+      z-index: 500;
+      transition: all 0.8s ease-in-out;
+      transform: translate3d(0, 680px, 0);      
+      box-sizing: content-box;
+      position: absolute;
       background-color: white;
-      width: 400px;
-      height: 140px;
-      top: calc(100% - 75px);
-      left: calc((1200px - 400px)/2;
-      border: 3px solid $green-border;
-      text-align: center;
-      color: $green-border;
-      text-align: center;
-      font-family: 'stolzl-light';
-      font-size: 60px;
-      padding-top: 35px;
-      @include m-desctop{
-        height: 60px;
-        width: 250px;
-        font-size: 40px;
-        padding-top: 5px;
-        top: calc(100% - 30px);
-        left: calc((850px - 250px)/2;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      .ingredient{
+        $ing-h: 490px;
+        box-sizing: content-box;
+        position: relative;
+        max-width: $ing-h;
+        min-width: $ing-h;
+        width: $ing-h;
+        .ingr-text{
+          $translate-x: $ing-h - $comp-h/2 - 55px;
+          $translate-y: ($comp-h - 165px)/2;
+          width:  680px;
+          height: 165px;
+          position: absolute;
+          text-overflow: clip;
+          color: $grey-text;
+          Font-Size: 135px;
+          // background-color: grey;
+          font-family: 'stolzl-med';
+          letter-spacing: 10px;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+          transform: rotate(-90deg) translate3d(-($translate-y), $translate-x, 0) ;
+          .text{
+            transform: translateX(-50px); 
+          }
+        }
+        .list{
+          z-index: 500;
+          position: absolute;
+          width: 390px;
+          left: calc((#{$ing-h} - 380px)/2);
+          margin-top: 50px;
+          .list-el{
+            position: relative;
+            height: 70px;
+            width: 100%;
+            // background-color: $grey-text;
+            margin-top: 40px;
+            .icon{
+              height: 60px;
+              width: 60px;
+              display: inline-block;
+              background-size: cover;
+              transform: translateY(-10px);
+            }
+            .text{
+              display: inline-block;
+              height: 60px;
+              width: 300px;
+              margin-left: 22px;
+              font-family: 'stolzl-med';
+              .title{
+                Font-Size: 40px;
+              }
+              .gram{
+                color: #cecece;
+                font-size: 20px;
+                line-height: 27px;
+              }
+            }
+            
+          }
+        }
+      } 
+      .proces{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        .shadow{
+          background-color: rgba(0,0,0,0.7);
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          .list{
+            margin: 0px auto;
+            width: 630px;
+            height: auto;
+            margin-top: 75px;
+            .list-el{
+              color: white;
+              font-size: 30px;
+              font-family: 'stolzl-light';
+              padding-top: 45px;
+              line-height: 40px;
+              span{
+                font-family: 'stolzl-med';
+              }
+            }
+          }
+        }
       }
     }
     .vert-column{
@@ -500,6 +721,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       height: 100%;
       width: 450px;
       border-top: 3px solid $green-border;
+      @include m-desctop{
+        width: 250px;
+      }
     }
     .hor-column{
       position: absolute;
@@ -508,23 +732,18 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       bottom: 0px;
       width: 100%;
       border-right: 3px solid $green-border;
+      @include m-desctop{
+        height: 210px;
+      }
     }
   }
-  .blac-comp{
+  .black-comp{
     border-color: black;
-    .recipe{
-      border-color: black;
-      color: black;
-    }
     .vert-column{border-color: black;}
     .hor-column{border-color: black;}
   }
   .red-comp{
     border-color: $red-border;
-    .recipe{
-      border-color: $red-border;
-      color: $red-border;
-    }
     .vert-column{border-color: $red-border;}
     .hor-column{border-color: $red-border;}    
   }
@@ -802,7 +1021,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   height: 1000px;
   @include m-desctop{
     height: 100%;
-    top: calc(280% + 1545px + 550px);
+    top: calc(380% + 550px);
   }
   .contacts-block{
     position: absolute;

@@ -10,10 +10,13 @@ $(document).ready(function() {
   });
 
   $('.close').click(function(){
-    console.log('clock');
     $('.modal').removeClass('slide');
   });
 
+  $('.recipe-but').click(function(){
+    $(this).parent().children('.component-container').children('.component').children('.recipe').toggleClass('active');
+    $(this).toggleClass('recipe-active');
+  });
   $('.slider').slick();
 });
 
