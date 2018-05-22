@@ -59,6 +59,12 @@ $tab-vert-delta: 1.4;
   }
 }
 
+@mixin smobile{
+  @media (max-width: 322px){
+    @content;
+  }
+}
+
 //fonts
 @font-face{
   font-family: 'stolzl-reg';
@@ -100,13 +106,23 @@ nav{
   @include mobile{
     height: 40px;
   }
+  .logo-link{
+    margin-left: 20px;
+    top: 0px;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    @include mobile{
+      margin-left: 5px;
+    }
+  }
   .logo{
+    left: 5px;
+    top: 20px;
     $logo: 60px;
     height: $logo;
     width: $logo;
     position: relative;
-    margin-left: 50px;
-    top: 20px;
     background-image: url('../images/logo.png');
     background-size: 100%;
     background-repeat: no-repeat;
@@ -114,13 +130,13 @@ nav{
       $logo: calc(#{$logo}/#{$m-vert-delta});
       height: $logo;
       width: $logo;
-      top: 15px;
+      top: 12px;
     }
     @include mobile{
       height: 40px;
       width: 40px;
       top: 7px;
-      margin-left: 10px;
+      margin-left: 0px;
     }    
   }
   .links{
@@ -208,6 +224,7 @@ nav{
     position: absolute;
     z-index: 900;
     display: none;
+    margin-top: 40px;
     @include mobile{
       display: none;
       transition: 0.5s;
@@ -269,10 +286,16 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       left: calc(50% - 30px);   
       top: calc(250px - 30px);
     }
+    @include smobile{
+      top: calc(200px - 30px);
+    }
   }
   .img-block{
     @include mobile{
       height: 250px !important;
+    }
+    @include smobile{
+      height: 200px !important;
     }
   } 
   .content-block{
@@ -316,7 +339,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         height: 100px;
         width: 200px !important;
         line-height: 47px;
-
+      }
+      @include smobile{
+        font-size: 40px;
       }
     }
     .side-text{
@@ -386,6 +411,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     @include mobile{
       font-size: 20px;
       margin-top: 25px;
+    }
+    @include smobile{
+      margin-top: 17px;
     }
   }
   .half{
@@ -489,6 +517,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     background-image: url('../images/hamburger.png');
     @include mobile{
       top: calc(100% - 280px);
+    }
+    @include smobile{
+      top: calc(100% - 230px);
     }    
   }  
   .big-text{
@@ -1043,6 +1074,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
               height: 30px;
               margin-top: 10px;
             }   
+            @include mobile{
+              margin-top: 5px;
+            }
             .icon{
               height: 60px;
               width: 60px;
@@ -1156,10 +1190,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       position: absolute;
       box-sizing: border-box;
       height: 100%;
-      width: 450px;
+      width: 690px;
       border-top: 3px solid $green-border;
       @include m-desctop{
-        width: 250px;
+        width: 500px;
         border-top: 2px solid $green-border;
       }
       @include mobile{
@@ -1184,7 +1218,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   }
   .green-comp{
     border-color: $green-border;
-    .vert-column{border-color: $green-border;}
+    .vert-column{
+      border-color: $green-border;
+    }
     .hor-column{border-color: $green-border;}
   }
   .black-comp{
@@ -1227,12 +1263,23 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       color: black !important;
     }
     border-color: black;
-    .vert-column{border-color: black;}
+    .vert-column{
+      border-color: black;
+      width: 450px;
+      @include m-desctop{
+        width: 250px;
+      }
+    }
     .hor-column{border-color: black;}
   }
   .red-comp{
     border-color: $red-border;
-    .vert-column{border-color: $red-border;}
+    .vert-column{
+      border-color: $red-border;
+      @include m-desctop{
+        width: 450px !important;
+      }
+    }
     .hor-column{border-color: $red-border;}    
   }
 }
@@ -1315,14 +1362,14 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         font-size: 30px;
         height: 60px;
         width: 230px;
-        padding-top: 15px;
+        padding-top: 10px;
         left: calc((100% - 230px)/2);
       }
       @include mobile{
         height: 30px;
         width: 150px;
         font-size: 15px;
-        padding-top: 7px;
+        padding-top: 4px;
         left: calc((100% - 150px)/2);
         bottom: 25px;
       }
@@ -1396,6 +1443,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           font-size: 13px;
           line-height: 22px; 
           margin-top: 80px;       
+        }
+        @include smobile{
+          font-size: 12px;
+          line-height: 20px;
+          margin-top: 60px;
         }
       }
     }
