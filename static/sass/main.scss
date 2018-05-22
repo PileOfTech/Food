@@ -59,7 +59,7 @@ $tab-vert-delta: 1.4;
   }
 }
 
-//fots
+//fonts
 @font-face{
   font-family: 'stolzl-reg';
   src: url('fonts/Stolzl-Regular.otf');
@@ -80,7 +80,9 @@ body{
   margin: 0px;
   overflow-x: hidden !important;
 }
-
+.disable{
+  overflow-y: hidden !important;
+}
 section{
   position: absolute;
   width: 100%;
@@ -94,6 +96,9 @@ nav{
   position: relative;
   @include m-desctop{
     height: $b-nav-height/$m-vert-delta;
+  }
+  @include mobile{
+    height: 40px;
   }
   .logo{
     $logo: 60px;
@@ -111,6 +116,12 @@ nav{
       width: $logo;
       top: 15px;
     }
+    @include mobile{
+      height: 40px;
+      width: 40px;
+      top: 7px;
+      margin-left: 10px;
+    }    
   }
   .links{
     top: 20px;
@@ -123,8 +134,11 @@ nav{
       top: 15px;
       height: 35px;
     }
-
+    @include mobile{
+      display: none;
+    }
     .link{
+      text-decoration: none !important;
       height: 100%;
       transition: 0.5s;
       margin-right: 50px;
@@ -173,6 +187,49 @@ nav{
       }
     }
   }
+  .burger{
+    display: none;
+    @include mobile{
+      position: absolute;
+      display: block;
+      height: 15px;
+      width: 25px;
+      right: 12px;
+      top: 12px;
+      background-image: url('../images/humburger.png');
+      background-size: cover;
+    }
+  }
+  .active{
+    display: block !important;
+    height: auto !important;
+  }
+  .mobile-menu{
+    position: absolute;
+    z-index: 900;
+    display: none;
+    @include mobile{
+      display: none;
+      transition: 0.5s;
+      // height: auto;
+      width: 100%;
+      height: 0px;
+      background-color: white;
+    }
+    .link{
+      margin-top: 10px;
+      height: 40px;
+      width: 100%;
+      text-align: center;
+    }
+    .mob{
+      text-decoration: none;
+      font-family: 'stolzl-reg';
+      font-size: 16px;
+      padding-top: 7px;
+      color: black;      
+    }
+  }
 }
 
 $large-container: 700px;
@@ -185,6 +242,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   width: 100%;
   @include m-desctop{
     height: $m-large-container;
+  }
+  @include mobile{
+    flex-direction: column;
+    height: 85%;
   }
   .icon{
     $icon: 130px;
@@ -202,11 +263,25 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       top: calc((#{$m-large-container})/2 - #{$m-icon}/2);
       left: calc((100% - #{$m-icon})/2);      
     }
+    @include mobile{
+      height: 60px;
+      width: 60px;
+      left: calc(50% - 30px);   
+      top: calc(250px - 30px);
+    }
   }
+  .img-block{
+    @include mobile{
+      height: 250px !important;
+    }
+  } 
   .content-block{
     height: 100%;
     width: 100%;
     position: relative;
+    @include mobile{
+      height: 100%;
+    }
     .hor-line{
       position: absolute;
       height: 2px;
@@ -214,6 +289,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       margin-top: calc(#{$large-container}/2);
       @include m-desctop{
         margin-top: calc(#{$m-large-container}/2);
+      }
+      @include mobile{
+        margin-top: 100px;
       }
     }
     .big-text{
@@ -232,6 +310,14 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         font-size: 100px;
         line-height: 102px;
       }
+      @include mobile{
+        font-size: 50px;
+        margin-top: 52px;
+        height: 100px;
+        width: 200px !important;
+        line-height: 47px;
+
+      }
     }
     .side-text{
       position: absolute;
@@ -239,17 +325,25 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       font-family: 'stolzl-light';
       font-size: 30px;
       display: inline-block;
+      @include mobile{
+        font-size: 12px;
+        height: 14px;
+      }
       .polygon{
         position: absolute;
         height: 30px;
         width: 30px;
         background-size: cover;
-        top: 32px;
+        top: 12px;
         @include m-desctop{
           height: 20px;
           width: 20px; 
           top: 22px;         
-        }        
+        }   
+        @include mobile{
+          height: 12px;
+          width: 12px;
+        }     
       }
       @include m-desctop{
          font-size: 20px;
@@ -272,7 +366,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   @include m-desctop{
     height: calc(100% - #{$m-large-container});
   }
+  @include mobile{
+    height: 15%;
+  }
   .or{
+    z-index: 900;
     position: absolute;
     text-align: center;
     color: black;
@@ -280,7 +378,15 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     font-size: 60px;
     height: 60px;
     width: 100%;
-    margin-top: calc((190px - 60px)/2);    
+    margin-top: calc((190px - 60px)/2);  
+    @include m-desctop{
+      font-size: 40px;
+      margin-top: calc((130px - 40px)/2);  
+    }  
+    @include mobile{
+      font-size: 20px;
+      margin-top: 25px;
+    }
   }
   .half{
     box-sizing: border-box;
@@ -288,6 +394,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     height: 100%;
     &:nth-child(1){
       border-right: 1px solid $green-light;
+    }
+    @include mobile{
+      &:nth-child(2){
+        display: none;
+      }      
     }
     .center-text{
       $large-c: 30px;
@@ -303,12 +414,19 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         font-size: $m-large-c;
         top: calc((100% - #{$m-large-c})/2);
       }
+      @include mobile{
+        top: 10px;
+        font-size: 10px;
+      }
     }
   }  
 }
 
 #healthy-section{
   height: calc(100% - #{$b-nav-height}) !important;
+  @include mobile{
+    height: 100% !important;
+  }
   .icon{
     background-image: url('../images/broccoli.png');
   }  
@@ -330,7 +448,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       width: 150px;
       bottom: 22px;
       left: calc((100% - 150px)/ 2); 
-    }   
+    }
+    @include mobile{
+      width: 100px;
+      left: calc((100% - 100px)/ 2); 
+    }  
   }
   .polygon{
     left: 193px;
@@ -341,6 +463,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       top: -41px;
       left: 130px;
     }
+    @include mobile{
+      left: 80px;
+      top: -25px;
+    }
   }
   .hor-line{
     background-color: $green-light;
@@ -349,8 +475,21 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
 #fastfood-section{
   height: 100%;
   top: 100%;
+  @include mobile{
+    height: 100%;
+    top: 100%;    
+  }  
+  .bottom-container{
+    display: none;
+    @include mobile{
+      display: block;
+    }
+  }
   .icon{
     background-image: url('../images/hamburger.png');
+    @include mobile{
+      top: calc(100% - 280px);
+    }    
   }  
   .big-text{
     color: $red;
@@ -358,6 +497,7 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     text-align: center;
     @include m-desctop{
       width: 400px;
+      margin-top: 136px;
     } 
 
   }
@@ -372,6 +512,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       width: 180px;
       left: calc((100% - 180px)/ 2);
     }          
+    @include mobile{
+      width: 110px;
+      left: calc((100% - 110px)/ 2);
+      padding-left: 22px;
+    }
   }  
   .polygon{
     left: 0px;
@@ -388,7 +533,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   height: 100%;
   top: calc(180%);
   @include m-desctop{
-    top: calc(180%);
+    top: 180%;
+  }
+  @include mobile{
+    top: 210%;
   }
   .arrows{
     opacity: 0.75;
@@ -405,6 +553,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       height: 60px;
       width: 120px;
       top: 450px;
+    }
+    @include mobile{
+      display: none;
     }
     .arrow{
       cursor: pointer;
@@ -470,6 +621,17 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         }
       }
     }
+    @include mobile{
+      height: 50px;
+      width: 200px;
+      left: calc((100% - 200px)/2);
+      top: 85%;
+      &:hover{
+        .hidden{
+          transform: translate3d(0, -48px, 0) !important;
+        }
+      }      
+    }
     &:hover{
       .hidden{
         transform: translate3d(0, -140px, 0);
@@ -486,8 +648,13 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         padding-top: 5px;
         font-size: 35px; 
+      }
+      @include mobile{
+        font-size: 25px;
+        padding-top: 7px;
       }    
     }
+
     .visible{
     }
     .hidden{
@@ -503,6 +670,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         @include m-desctop{
           border: 2px solid $green-border;
         }
+        @include mobile{
+          border: 2px solid $green-border;
+        }        
       }
       .visible{
         color: $green-border;
@@ -543,7 +713,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         border: 3px solid black;
         @include m-desctop{
           border: 2px solid black;
-        }        
+        }    
+        @include mobile{
+          border: 2px solid black;
+        }                
       }
       .visible{
         color: black;
@@ -573,7 +746,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         border: 3px solid $red-border;
         @include m-desctop{
           border: 2px solid $red-border;
-        }        
+        }   
+        @include mobile{
+          border: 2px solid $red-border;
+        }   
       }
       .visible{
         color: $red-border;
@@ -621,16 +797,30 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         height: 75px;
         padding-top: calc((450px - 70px)/2); 
       }     
+      @include mobile{
+        width: 80%;
+        padding-left: 10%;
+        padding-top: 100%;
+        color: black;
+      }
     }
   } 
   .bac-02{
     background-image: url('../images/back-recipe-02.png');
+    @include mobile{
+      background-position: 45% !important;
+    }
     .text{
       width: 890px;
       height: 125px;
       color: black;
       padding-left: 740px;
-      padding-top: 140px;      
+      padding-top: 140px;   
+      @include mobile{
+        width: 80%;
+        padding-left: 8%;
+        padding-top: 100%;
+      }         
     }    
   }  
   .bac-03{
@@ -640,7 +830,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       height: 275px;
       color: black;
       padding-left: 72px;
-      padding-top: 200px;      
+      padding-top: 200px;  
+      @include mobile{
+        width: 80%;
+        padding-left: 8%;
+        padding-top: 100%;
+      }          
     }        
   }      
   .background{
@@ -656,6 +851,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     @include m-desctop{
       height: $m-content-h;
     }    
+    @include mobile{
+      height: 60%;
+    }
     .text{
       z-index: 200;
       position:  absolute;
@@ -664,11 +862,20 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         font-size: 40px;
       }   
+      @include mobile{
+        font-size: 20px;  
+      }
     }
   }
   .recipe-active{
     .hidden{
       transform: translate3d(0, -140px, 0) !important;
+      @include m-desctop{
+        transform: translate3d(0, -56px, 0) !important;        
+      }
+      @include mobile{
+        transform: translate3d(0, -48px, 0) !important;
+      }
     }
   }  
   .component-container{
@@ -682,6 +889,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       left: 260px;
       height: 530px;
     }    
+    @include mobile{
+      width: 90%;
+      height: 90%;
+      top: 5%;
+      left: 5%;
+    }
   }
   .component{
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -697,6 +910,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     @include m-desctop{
       width: 850px;
       height: 480px;
+      border-bottom: 2px solid $green-border;
+      border-left: 2px solid $green-border;      
+    }
+    @include mobile{
+      width: 100%;
+      height: 94%; 
       border-bottom: 2px solid $green-border;
       border-left: 2px solid $green-border;      
     }
@@ -720,6 +939,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
+      @include mobile{
+        flex-direction: column;
+      }
       .ingredient{
         background-color: white;
         $ing-h: 490px;
@@ -733,6 +955,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           max-width: $m-ing-h;
           min-width: $m-ing-h;
           width: $m-ing-h;          
+        }
+        @include mobile{
+          height: 50%;
+          max-width: 100%;
+          min-width: 100%;          
+          width: 100%;
         }
         .ravioli{
           height: 100%;
@@ -752,6 +980,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           @include m-desctop{
             width: 100px;
           }
+          @include mobile{
+            width: 50px;
+          }
         }
         .ingr-text{
           $translate-x: $ing-h - $comp-h/2 - 55px;
@@ -770,11 +1001,19 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
             width: 475px;
             transform: rotate(-90deg) translate3d(-155px, 75px, 0) ;
           }
+          @include mobile{
+            width: 100%;
+            letter-spacing: 5px;
+            transform: translate3d(0px, 80%, 0) ;
+          }
           .text{
             height: 120px;
             font-size: 115px;
             width:  470px;
-            transform: translateX(-50px); 
+            transform: translateX(-50px);
+            @include mobile{
+              font-size: 80px;
+            } 
           }
         }
         .list{
@@ -785,7 +1024,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           margin-top: 50px;
           @include m-desctop{
             width: 300px;
-          }          
+          }    
+          @include mobile{
+            left: calc((100% - 170px)/2);
+            margin-top: 10px;
+            width: 170px;
+          }      
           .list-el{
             position: relative;
             height: 70px;
@@ -794,7 +1038,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
             @include m-desctop{
               height: 50px;
               margin-top: 20px;
-            }                
+            }             
+            @include mobile{
+              height: 30px;
+              margin-top: 10px;
+            }   
             .icon{
               height: 60px;
               width: 60px;
@@ -805,7 +1053,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
                 width: 35px;
                 height: 35px;
                 transform: translateY(0px);
-              }                  
+              }      
+              @include mobile{
+                height: 20px;
+                width: 20px;
+              }            
             }
             .text{
               display: inline-block;
@@ -818,10 +1070,17 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
                 height: 45px;
                 margin-left: 12px;
               }
+              @include mobile{
+                height: 30px;
+                width: 120px;
+              }
               .title{
                 Font-Size: 40px;
                 @include m-desctop{
                   font-size: 24px;
+                }
+                @include mobile{
+                  font-size: 15px;
                 }
               }
               .gram{
@@ -831,6 +1090,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
                 @include m-desctop{
                   font-size: 16px;
                   line-height: 20px;
+                }
+                @include mobile{
+                  font-size: 12px;
+                  line-height: 14px;
                 }
               }
             }
@@ -843,6 +1106,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         width: 100%;
         height: 100%;
         background-size: cover;
+        @include mobile{
+          height: 50%;         
+          width: 100%;
+        }        
         .shadow{
           background-color: rgba(0,0,0,0.7);
           width: 100%;
@@ -857,6 +1124,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
               margin-top:  105px;
               width: 380px;
             }
+            @include mobile{
+              width: 90%;
+              margin-top: 20px;
+            }
             .list-el{
               color: white;
               font-size: 30px;
@@ -867,6 +1138,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
                 font-size: 19px;
                 line-height: 24px;
                 padding-top: 17px;
+              }
+              @include mobile{
+                font-size: 12px;
+                line-height: 14px;
+                padding-top: 10px;
               }
               span{
                 font-family: 'stolzl-med';
@@ -886,6 +1162,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         width: 250px;
         border-top: 2px solid $green-border;
       }
+      @include mobile{
+        width: 70%;
+      }
     }
     .hor-column{
       position: absolute;
@@ -897,6 +1176,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         height: 210px;
         border-right: 2px solid $green-border;
+      }
+      @include mobile{
+        height: 50%;
       }
     }
   }
@@ -917,6 +1199,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         width: 400px;
         height: 2px;
       } 
+      @include mobile{
+        width: 30%;
+        top: 50%;
+      }
     }
     .line-h{
       position: absolute;
@@ -929,6 +1215,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         width: 2px;
         height: 200px;
       }   
+      @include mobile{
+        left: 70%;
+        height: 30%;
+      }
     }
     .shadow{
       background-color: rgba(255,255,255,0.7) !important;
@@ -948,13 +1238,18 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
 }
 #best{
   height: 100%;
-  top: calc(280%);
+  top: 280%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap; 
   @include m-desctop{
-    top: calc(280%);
+    top: 280%;
   } 
+  @include mobile{
+    height: 200%;
+    top: 310%;
+    flex-direction: column;
+  }
   .title-cont{
     top: -2px;
     box-sizing: border-box;
@@ -974,7 +1269,15 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       padding-top: 7px;
       width: 400px;
       left: 300px;
-    }      
+    }    
+    @include mobile{
+      width: 240px;
+      left: calc((100% - 240px)/2);
+      height: 40px;
+      padding-top: 8px;
+      font-size: 20px;
+      top: calc(50% - 20px);
+    }  
   }
   .modal{
     box-sizing: border-box; 
@@ -986,7 +1289,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     transition-timing-function: ease-out;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;        
+    flex-wrap: nowrap;  
+    @include mobile{
+      flex-direction: column;
+      height: 50%;
+    }      
     .close{
       box-sizing: border-box;
       cursor: pointer;
@@ -1011,6 +1318,14 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         padding-top: 15px;
         left: calc((100% - 230px)/2);
       }
+      @include mobile{
+        height: 30px;
+        width: 150px;
+        font-size: 15px;
+        padding-top: 7px;
+        left: calc((100% - 150px)/2);
+        bottom: 25px;
+      }
       &:hover{
         background-color: white;
         color: black;
@@ -1034,7 +1349,13 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         min-width: 720px;
         max-width: 720px;
         width: 820px;
-      }         
+      }       
+      @include mobile{
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;   
+        height: 40%;     
+      }  
       img{
         height: 100%;
         width: 100%;
@@ -1051,6 +1372,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         background-size: cover;
       }
+      @include mobile{
+        height: 70%;
+        width: 100%;
+        background-size: cover;
+      }
       .text{
         margin: 0px auto;
         margin-top: 236px;
@@ -1064,6 +1390,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           font-size: 18px;
           line-height: 40px;
           width: 450px;
+        }
+        @include mobile{
+          width: 80%;
+          font-size: 13px;
+          line-height: 22px; 
+          margin-top: 80px;       
         }
       }
     }
@@ -1079,6 +1411,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
   }
   .modal-right{
     transform: translateX(100%);
+    @include mobile{
+      transform: translateX(-100%);
+      top: 50%;
+    }
    .desc-block{
       background-image: url('../images/desc-noodles.png');
       .text{
@@ -1118,6 +1454,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         margin-top: 70px;
         width: 500px;
       }
+      @include mobile{
+        width: 80%;
+        margin-top: 35px;
+      }
       .title{
         padding-top: 24px;
         font-family: 'stolzl-reg';
@@ -1125,6 +1465,9 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         font-size: 60px;
         @include m-desctop{
           font-size: 40px;
+        }
+        @include mobile{
+          font-size: 45px;
         }
       }
       .desc{
@@ -1139,6 +1482,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           padding-right: 120px;
           font-size: 16px;
         }
+        @include mobile{
+          padding-top: 10px;
+          font-size: 14px;
+          padding-left: 0px;
+          padding-right: 0px;
+        }
       }
       .r-desc{
         $padding: 130px;
@@ -1148,7 +1497,13 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
           padding-left: 0px !important;
           padding-right: 0px !important;
           font-size: 16px;
-        }      
+        }   
+        @include mobile{
+          padding-top: 10px;
+          font-size: 14px;
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }           
       }
 
     }
@@ -1162,6 +1517,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     top: calc(280% + 700px);
     height: 100%;
   }
+  @include mobile{
+    top: 510%;
+    height: 60%;
+  }
   .text-container{
     $text-cont: 615px;
     position: absolute;
@@ -1170,8 +1529,6 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     border-right: 4px solid $grey-line;
     border-left: 4px solid $grey-line;
     bottom: 200px;
-    left: 0px;
-    right: 0px;
     left: calc((100% - 1100px)/2);
     box-sizing: border-box;
     @include m-desctop{
@@ -1179,6 +1536,14 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       width: 800px;
       left: calc((100% - 800px)/2);
       bottom: 150px;
+    }
+    @include mobile{
+      width: 90%;
+      height: 70%;
+      bottom: 0px;
+      left: 5%;
+      border-right: 2px solid $grey-line;
+      border-left: 2px solid $grey-line;      
     }
     .text{
       position: relative;
@@ -1195,7 +1560,13 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         margin-top: 50px;
         width: 700px;
         font-size: 22px;
-      }      
+      }    
+      @include mobile{
+        width: 90%;
+        font-size: 12px;
+        line-height: 14px;
+        margin-top: 65px;
+      }  
     }
     .border-column{
       position: absolute;
@@ -1210,6 +1581,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       &:nth-child(2){
         right: 0px;
       }
+      @include mobile{
+        height: 100%;
+        border-bottom: 2px solid $grey-line;
+        border-top: 2px solid $grey-line;        
+      }
     }
   }
 }
@@ -1221,7 +1597,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     height: 100%;
     top: calc(380% + 550px);
   }
+  @include mobile{
+    height: 400px;
+    top: 580%;
+  }
   .contacts-block{
+    z-index: 900;
     position: absolute;
     width: 890px;
     height: 300px;
@@ -1233,6 +1614,12 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       left: 150px;
       width: 500px;
     }
+    @include mobile{
+      width: 200px;
+      height: 200px;
+      left: 30px;
+      top: 230px;
+    }
     .text{
       padding-top: 20px;
       color: black;
@@ -1243,6 +1630,10 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         font-size: 30px;
         line-height: 34px;
       }      
+      @include mobile{
+        font-size: 12px;
+        line-height: 13px;
+      }
     }
     .link{
       line-height: 59px;
@@ -1252,7 +1643,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         font-size: 30px;
         line-height: 34px;
-      }        
+      } 
+      @include mobile{
+        font-size: 12px;
+        line-height: 13px;
+      }       
       a{
         color: black !important;
         text-decoration: none;
@@ -1266,7 +1661,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
       @include m-desctop{
         font-size: 25px;
         line-height: 34px;
-      }        
+      }
+      @include mobile{
+        font-size: 12px;
+        line-height: 16px;
+      }                 
     }
     .icons{
       $icon-size: 75px;
@@ -1283,6 +1682,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         width: 100px;
         height: 40px;
       }        
+      @include mobile{
+        height: 20px;
+        width: 50px;
+        margin-top: 5px;
+      }
       .icon{
         height: $icon-size;
         width: $icon-size;
@@ -1291,7 +1695,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
         @include m-desctop{
           height: 40px;
           width: 40px;          
-        }          
+        } 
+        @include mobile{
+          height: 20px;
+          width: 20px;
+        }       
       }
       .icon-vk{
         background-image: url('../images/icon-vk.png');
@@ -1310,6 +1718,11 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     right: 0px;
     @include m-desctop{
       width: 400px;
+    }
+    @include mobile{
+      height: 300px;
+      width: 50%;
+      bottom: 0;
     }
   }
 }
